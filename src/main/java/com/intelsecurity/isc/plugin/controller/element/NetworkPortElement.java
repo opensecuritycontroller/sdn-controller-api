@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.controller.element;
+package com.intelsecurity.isc.plugin.controller.element;
 
 public interface NetworkPortElement {
     public String getPortId();

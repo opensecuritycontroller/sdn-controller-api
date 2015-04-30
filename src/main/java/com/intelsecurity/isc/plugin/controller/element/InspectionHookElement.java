@@ -1,6 +1,6 @@
-package com.intelsecurity.isc.controller.element;
+package com.intelsecurity.isc.plugin.controller.element;
 
-import com.intelsecurity.isc.controller.FailurePolicyType;
+import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
 
 public interface InspectionHookElement {
     public String getHookId();

@@ -1,11 +1,12 @@
-package com.intelsecurity.isc.controller.api;
+package com.intelsecurity.isc.plugin.controller.api;
 
-import com.intelsecurity.isc.controller.FailurePolicyType;
-import com.intelsecurity.isc.controller.element.InspectionHookElement;
-import com.intelsecurity.isc.controller.element.NetworkPortElement;
-import com.intelsecurity.isc.controller.element.TagEncapsulationType;
+import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
+import com.intelsecurity.isc.plugin.controller.element.InspectionHookElement;
+import com.intelsecurity.isc.plugin.controller.element.NetworkPortElement;
+import com.intelsecurity.isc.plugin.controller.element.TagEncapsulationType;
+import com.intelsecurity.isc.plugin.controller.element.VirtualizationConnectorElement;
 
-public interface NetworkControllerApi {
+public interface SdnControllerApi {
 
     /**
      * Install network hooks to inspect traffic of given network port by another network port
@@ -133,5 +134,11 @@ public interface NetworkControllerApi {
      *            Inspection port to on board
      */
     public abstract void registerInspectionPort(NetworkPortElement inspectionPort) throws Exception;
+
+    public abstract String getName();
+
+    public abstract String getVersion();
+
+    public abstract void setVirtualizationConnector(VirtualizationConnectorElement vc);
 
 }
