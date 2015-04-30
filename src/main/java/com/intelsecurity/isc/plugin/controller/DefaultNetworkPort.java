@@ -2,12 +2,12 @@ package com.intelsecurity.isc.plugin.controller;
 
 import com.intelsecurity.isc.plugin.controller.element.NetworkPortElement;
 
-public class DefaultNetworkPortElement implements NetworkPortElement {
+public class DefaultNetworkPort implements NetworkPortElement {
 
     private String portId;
     private String macAddress;
 
-    public DefaultNetworkPortElement(String portId, String macAddress) {
+    public DefaultNetworkPort(String portId, String macAddress) {
         this.portId = portId;
         this.macAddress = macAddress;
     }

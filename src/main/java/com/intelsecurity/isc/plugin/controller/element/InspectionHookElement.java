@@ -1,6 +1,7 @@
 package com.intelsecurity.isc.plugin.controller.element;
 
 import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
+import com.intelsecurity.isc.plugin.controller.TagEncapsulationType;
 
 public interface InspectionHookElement {
     public String getHookId();

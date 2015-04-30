@@ -1,9 +1,9 @@
 package com.intelsecurity.isc.plugin.controller.api;
 
 import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
+import com.intelsecurity.isc.plugin.controller.TagEncapsulationType;
 import com.intelsecurity.isc.plugin.controller.element.InspectionHookElement;
 import com.intelsecurity.isc.plugin.controller.element.NetworkPortElement;
-import com.intelsecurity.isc.plugin.controller.element.TagEncapsulationType;
 import com.intelsecurity.isc.plugin.controller.element.VirtualizationConnectorElement;
 
 public interface SdnControllerApi {

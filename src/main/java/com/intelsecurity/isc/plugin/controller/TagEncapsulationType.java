@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.plugin.controller.element;
+package com.intelsecurity.isc.plugin.controller;
 
 public enum TagEncapsulationType {
     VLAN("VLAN"),
