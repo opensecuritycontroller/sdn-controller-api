@@ -135,10 +135,28 @@ public interface SdnControllerApi {
      */
     public abstract void registerInspectionPort(NetworkPortElement inspectionPort) throws Exception;
 
+    /**
+     * SDN Controller name. This name will show up on ISC controller drop down when adding VC
+     * @return SDN Controller name
+     */
     public abstract String getName();
 
+    /**
+     * SDN Controller version informational string
+     * @return SDN Controller version
+     */
     public abstract String getVersion();
 
+    /**
+     * Set Virtualization Connector context through which authentication information can be obtained
+     * @param vc Virtualization Connector Element
+     */
     public abstract void setVirtualizationConnector(VirtualizationConnectorElement vc);
+
+    /**
+     * Check if SDN Controller supports traffic redirection to a VNF running on a remote hypervisor
+     * @return true if SDN controller capable of redirection to VNF running on another host
+     */
+    public abstract boolean isOffboxRedirectionSupported();
 
 }
