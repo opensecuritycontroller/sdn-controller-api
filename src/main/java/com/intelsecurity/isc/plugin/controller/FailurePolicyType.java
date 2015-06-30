@@ -16,6 +16,10 @@ public enum FailurePolicyType {
     }
 
     public static FailurePolicyType fromText(String text) {
+        if (text == null) {
+            return null;
+        }
+
         for (FailurePolicyType type : FailurePolicyType.values()) {
             if (type.getText().equals(text)) {
                 return type;
