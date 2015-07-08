@@ -129,6 +129,9 @@ public interface SdnControllerApi {
 
     void updateInspectionHook(InspectionHookElement inspectionHook) throws Exception;
 
+    void updateInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag,
+            TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType) throws Exception;
+
     /**
      * On board a port as inspection interface
      * 
@@ -177,4 +180,7 @@ public interface SdnControllerApi {
      * @return
      */
     Status getStatus() throws Exception;
+
+    void setInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long order) throws Exception;
+    Long getInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort) throws Exception;
 }
