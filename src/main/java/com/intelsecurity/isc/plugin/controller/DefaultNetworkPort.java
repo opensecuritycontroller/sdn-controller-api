@@ -26,4 +26,9 @@ public class DefaultNetworkPort implements NetworkPortElement {
         return this.macAddress;
     }
 
+    @Override
+    public String toString() {
+        return "DefaultNetworkPort [portId=" + this.portId + ", macAddress=" + this.macAddress + "]";
+    }
+
 }
