@@ -170,6 +170,13 @@ public interface SdnControllerApi {
     boolean isOffboxRedirectionSupported();
 
     /**
+     * Check if SDN Controller supports traffic redirection to multiple VNFs (service function chaining)
+     * 
+     * @return true if SDN controller capable of redirection to multiple VNFs set up in a chain
+     */
+    boolean isServiceFunctionChainingSupported();
+
+    /**
      * 
      * Method returns Status object which will provide the following information
      * 
