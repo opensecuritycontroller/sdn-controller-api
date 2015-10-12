@@ -6,12 +6,16 @@ public interface VirtualizationConnectorElement {
      * Return Virtualization Connector name
      * @return
      */
-    public String getName();
+    String getName();
 
-    public String getControllerIpAddress();
+    String getControllerIpAddress();
 
-    public String getControllerUsername();
+    String getControllerUsername();
 
-    public String getControllerPassword();
+    String getControllerPassword();
+
+    String getAdminTenantName();
+
+    boolean isHttps();
 
 }
