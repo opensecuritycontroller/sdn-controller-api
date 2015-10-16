@@ -1,11 +1,9 @@
 package com.intelsecurity.isc.plugin.controller.element;
 
+import java.util.Map;
+
 public interface VirtualizationConnectorElement {
 
-    /**
-     * Return Virtualization Connector name
-     * @return
-     */
     String getName();
 
     String getControllerIpAddress();
@@ -14,8 +12,17 @@ public interface VirtualizationConnectorElement {
 
     String getControllerPassword();
 
-    String getAdminTenantName();
+    boolean isControllerHttps();
 
-    boolean isHttps();
+    String getProviderIpAddress();
 
+    String getProviderUsername();
+
+    String getProviderPassword();
+
+    String getProviderAdminTenantName();
+
+    boolean isProviderHttps();
+
+    Map<String, String> getProviderAttributes();
 }

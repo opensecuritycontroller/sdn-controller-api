@@ -217,6 +217,8 @@ public interface SdnControllerApi extends AutoCloseable {
      */
     Status getStatus() throws Exception;
 
+    boolean isUsingProviderCreds();
+
     void setInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long order)
             throws NetworkPortNotFoundException, Exception;
 
