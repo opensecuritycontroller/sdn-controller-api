@@ -1,6 +1,9 @@
 package com.intelsecurity.isc.plugin.controller.api;
 
+import java.util.List;
+
 import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
+import com.intelsecurity.isc.plugin.controller.FlowQueryInfo;
 import com.intelsecurity.isc.plugin.controller.Status;
 import com.intelsecurity.isc.plugin.controller.TagEncapsulationType;
 import com.intelsecurity.isc.plugin.controller.element.InspectionHookElement;
@@ -224,4 +227,48 @@ public interface SdnControllerApi extends AutoCloseable {
 
     Long getInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
+
+    /**
+     * Query port information based on 5 tuple flow info + timestamp.
+     * Return the same structure with source port and/or destination neuron port filled in or null if not found.
+     *
+     * @param portsQuery
+     *            Array of flow query info
+     * @return Original input array with source and/or destination ports filled if found. Null if not found.
+     * @throws Exception
+     *             if case of invalid input or service issues (connectivity, etc)
+     */
+    List<FlowQueryInfo> queryPortInfo(List<FlowQueryInfo> portsQuery) throws Exception;
+
+    /**
+     * Quarantine a port from network. All traffic coming or going to and from this port will be dropped.
+     *
+     * @param portId
+     *            The port to quarantine.
+     * @throws Exception
+     *             In case of invalid input or service issues. If port is already quarantine, no-op.
+     */
+    void quarantinePort(String portId) throws Exception;
+
+    /**
+     * Un-quarantine a port from network. All traffic coming or going to and from this port will now be allowed.
+     *
+     * @param portId
+     *            The port to un-quarantine.
+     * @throws Exception
+     *             In case of invalid input or service issues. If port is already not quarantined, no-op.
+     */
+    void unquarantinePort(String portId) throws Exception;
+
+    /**
+     * Query whether a port is quarantined from network.
+     *
+     * @param portId
+     *            The port to queried for quarantining state.
+     * @return True of port is quarantine from the network, false if otherwise.
+     *
+     * @throws Exception
+     *             In case of invalid input or service issues.
+     */
+    boolean isPortquarantine(String portId) throws Exception;
 }
