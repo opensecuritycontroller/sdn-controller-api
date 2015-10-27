@@ -1,9 +1,10 @@
 package com.intelsecurity.isc.plugin.controller.api;
 
-import java.util.List;
+import java.util.HashMap;
 
 import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
-import com.intelsecurity.isc.plugin.controller.FlowQueryInfo;
+import com.intelsecurity.isc.plugin.controller.FlowInfo;
+import com.intelsecurity.isc.plugin.controller.FlowPortInfo;
 import com.intelsecurity.isc.plugin.controller.Status;
 import com.intelsecurity.isc.plugin.controller.TagEncapsulationType;
 import com.intelsecurity.isc.plugin.controller.element.InspectionHookElement;
@@ -228,6 +229,7 @@ public interface SdnControllerApi extends AutoCloseable {
     Long getInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
+    boolean isSupportQueryPortInfo();
     /**
      * Query port information based on 5 tuple flow info + timestamp.
      * Return the same structure with source port and/or destination neuron port filled in or null if not found.
@@ -238,7 +240,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @throws Exception
      *             if case of invalid input or service issues (connectivity, etc)
      */
-    List<FlowQueryInfo> queryPortInfo(List<FlowQueryInfo> portsQuery) throws Exception;
+    HashMap<String, FlowPortInfo> queryPortInfo(HashMap<String, FlowInfo> portsQuery) throws Exception;
 
     /**
      * Quarantine a port from network. All traffic coming or going to and from this port will be dropped.
