@@ -242,35 +242,4 @@ public interface SdnControllerApi extends AutoCloseable {
      */
     HashMap<String, FlowPortInfo> queryPortInfo(HashMap<String, FlowInfo> portsQuery) throws Exception;
 
-    /**
-     * Quarantine a port from network. All traffic coming or going to and from this port will be dropped.
-     *
-     * @param portId
-     *            The port to quarantine.
-     * @throws Exception
-     *             In case of invalid input or service issues. If port is already quarantine, no-op.
-     */
-    void quarantinePort(String portId) throws Exception;
-
-    /**
-     * Un-quarantine a port from network. All traffic coming or going to and from this port will now be allowed.
-     *
-     * @param portId
-     *            The port to un-quarantine.
-     * @throws Exception
-     *             In case of invalid input or service issues. If port is already not quarantined, no-op.
-     */
-    void unquarantinePort(String portId) throws Exception;
-
-    /**
-     * Query whether a port is quarantined from network.
-     *
-     * @param portId
-     *            The port to queried for quarantining state.
-     * @return True of port is quarantine from the network, false if otherwise.
-     *
-     * @throws Exception
-     *             In case of invalid input or service issues.
-     */
-    boolean isPortquarantine(String portId) throws Exception;
 }
