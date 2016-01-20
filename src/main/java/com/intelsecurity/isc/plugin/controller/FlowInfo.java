@@ -1,7 +1,5 @@
 package com.intelsecurity.isc.plugin.controller;
 
-import java.util.Date;
-
 public class FlowInfo {
 
     public String sourceIpAddress;
@@ -11,13 +9,13 @@ public class FlowInfo {
     public String destinationMacAddress;
     public int destinationPort;
     public int protocolId;
-    public Date flowTimestamp;
+    public long flowTimestamp;
 
     @Override
     public String toString() {
-        return "FlowInfo [sourceIpAddress=" + sourceIpAddress + ", sourceMacAddress=" + sourceMacAddress
-                + ", sourcePort=" + sourcePort + ", destinationIpAddress=" + destinationIpAddress
-                + ", destinationMacAddress=" + destinationMacAddress + ", destinationPort=" + destinationPort
-                + ", protocolId=" + protocolId + ", flowTimestamp=" + flowTimestamp + "]";
+        return "FlowInfo [sourceIpAddress=" + this.sourceIpAddress + ", sourceMacAddress=" + this.sourceMacAddress
+                + ", sourcePort=" + this.sourcePort + ", destinationIpAddress=" + this.destinationIpAddress
+                + ", destinationMacAddress=" + this.destinationMacAddress + ", destinationPort=" + this.destinationPort
+                + ", protocolId=" + this.protocolId + ", flowTimestamp=" + this.flowTimestamp + "]";
     }
 }
