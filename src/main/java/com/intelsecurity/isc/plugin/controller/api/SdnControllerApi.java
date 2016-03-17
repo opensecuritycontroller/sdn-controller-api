@@ -1,6 +1,7 @@
 package com.intelsecurity.isc.plugin.controller.api;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
 import com.intelsecurity.isc.plugin.controller.FlowInfo;
@@ -21,23 +22,23 @@ public interface SdnControllerApi extends AutoCloseable {
     /**
      * Install network hooks to inspect traffic of given network port by another network port
      * which is part of an inspection network device.
-     *
+     * 
      * @param inspectedPort
      *            The port on which behalf traffic is being inspected.
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
+     * @param inspectionPorts
+     *            Set of inspection ports belonging to network inspection devices.
      * @param tag
-     *            A tag made available to inspection port datapath. Usually represent the policy by
+     *            A tag made available to inspection port data path. Usually represent the policy by
      *            which traffic should be inspected.
      * @param encType
      *            Data path Encapsulation Method to use to extract tag and direction from packet
-     *
+     * 
      * @param order
      *            The order in which to insert the inspection hook. If other inspection hooks are already in place, all
      *            existing hooks will be push down from the point of insertion. The order range is zero based where -1
      *            symbolizes to append as last
      */
-    void installInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag,
+    void installInspectionHook(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
@@ -49,7 +50,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @param inspectionPort
      *            The inspection port belonging to network inspection device.
      */
-    void removeInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort) throws Exception;
+    void removeInspectionHook(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts) throws Exception;
 
     /**
      * Remove previously installed network hooks placed on behalf of network port.
@@ -62,8 +63,8 @@ public interface SdnControllerApi extends AutoCloseable {
     void removeAllInspectionHooks(NetworkPortElement inspectedPort) throws Exception;
 
     /**
-     * Set datapath policy tag of a specific inspection hook.
-     *
+     * Set data path policy tag of a specific inspection hook.
+     * 
      * @param inspectedPort
      *            The port on which behalf traffic is being inspected.
      * @param inspectionPort
@@ -71,7 +72,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @param tag
      *            The tag value to set
      */
-    void setInspectionHookTag(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag)
+    void setInspectionHookTag(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts, Long tag)
             throws NetworkPortNotFoundException, Exception;
 
     /**
@@ -83,7 +84,7 @@ public interface SdnControllerApi extends AutoCloseable {
      *            The inspection port belonging to network inspection device.
      * @return The current inspection tag
      */
-    Long getInspectionHookTag(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
+    Long getInspectionHookTag(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts)
             throws NetworkPortNotFoundException, Exception;
 
     /**
@@ -98,7 +99,7 @@ public interface SdnControllerApi extends AutoCloseable {
      *
      * @throws Exception
      */
-    void setInspectionHookFailurePolicy(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort,
+    void setInspectionHookFailurePolicy(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts,
             FailurePolicyType failurePolicyType) throws NetworkPortNotFoundException, Exception;
 
     /**
@@ -111,7 +112,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @return The current failure policy
      */
     FailurePolicyType getInspectionHookFailurePolicy(NetworkPortElement inspectedPort,
-            NetworkPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
+            Set<NetworkPortElement> inspectionPorts) throws NetworkPortNotFoundException, Exception;
 
     /**
      * Return list of inspected port on which behalf inspection hooks are installed.
@@ -132,12 +133,12 @@ public interface SdnControllerApi extends AutoCloseable {
      */
     //    public abstract List<NetworkPortElement> getInspectionPorts(NetworkPortElement inspectedPort) throws Exception;
 
-    InspectionHookElement getInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
+    InspectionHookElement getInspectionHook(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts)
             throws NetworkPortNotFoundException, Exception;
 
     void updateInspectionHook(InspectionHookElement inspectionHook) throws NetworkPortNotFoundException, Exception;
 
-    void updateInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag,
+    void updateInspectionHook(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
@@ -158,6 +159,12 @@ public interface SdnControllerApi extends AutoCloseable {
     InspectionPortElement getInspectionPort(NetworkPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
+    void setInspectionHookOrder(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts, Long order)
+            throws NetworkPortNotFoundException, Exception;
+
+    Long getInspectionHookOrder(NetworkPortElement inspectedPort, Set<NetworkPortElement> inspectionPorts)
+            throws NetworkPortNotFoundException, Exception;
+
     /**
      * SDN Controller name. This name will show up on ISC controller drop down when adding VC
      *
@@ -171,6 +178,19 @@ public interface SdnControllerApi extends AutoCloseable {
      * @return SDN Controller version
      */
     String getVersion();
+
+    /**
+     * 
+     * Method returns Status object which will provide the following information
+     * 
+     * name: SDNController's Name
+     * version: SDNController's version
+     * controllerReady: This boolean flag if true represents that SDN controller is ready to serve
+     * 
+     * @return
+     */
+    Status getStatus() throws Exception;
+
 
     /**
      * Set Virtualization Connector context through which authentication information can be obtained
@@ -209,27 +229,12 @@ public interface SdnControllerApi extends AutoCloseable {
      */
     boolean isFailurePolicySupported();
 
-    /**
-     *
-     * Method returns Status object which will provide the following information
-     *
-     * name: SDNController's Name
-     * version: SDNController's version
-     * controllerReady: This boolean flag if true represents that SDN controller is ready to serve
-     *
-     * @return
-     */
-    Status getStatus() throws Exception;
-
     boolean isUsingProviderCreds();
 
-    void setInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long order)
-            throws NetworkPortNotFoundException, Exception;
-
-    Long getInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
-            throws NetworkPortNotFoundException, Exception;
-
     boolean isSupportQueryPortInfo();
+
+    boolean isPortGroupSupported();
+
     /**
      * Query port information based on 5 tuple flow info + timestamp.
      * Return the same structure with source port and/or destination neuron port filled in or null if not found.
