@@ -51,7 +51,7 @@
 				<artifactId>maven-source-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<finalName>IscSdnControllerPlugin</finalName>
+					<finalName>OscSdnControllerPlugin</finalName>
 				</configuration>
 				<executions>
 					<execution>
