@@ -22,7 +22,7 @@ public interface SdnControllerApi extends AutoCloseable {
     /**
      * Install network hooks to inspect traffic of given network port by another network port
      * which is part of an inspection network device.
-     * 
+     *
      * @param inspectedPort
      *            The port on which behalf traffic is being inspected.
      * @param inspectionPorts
@@ -32,7 +32,7 @@ public interface SdnControllerApi extends AutoCloseable {
      *            which traffic should be inspected.
      * @param encType
      *            Data path Encapsulation Method to use to extract tag and direction from packet
-     * 
+     *
      * @param order
      *            The order in which to insert the inspection hook. If other inspection hooks are already in place, all
      *            existing hooks will be push down from the point of insertion. The order range is zero based where -1
@@ -64,7 +64,7 @@ public interface SdnControllerApi extends AutoCloseable {
 
     /**
      * Set data path policy tag of a specific inspection hook.
-     * 
+     *
      * @param inspectedPort
      *            The port on which behalf traffic is being inspected.
      * @param inspectionPort
@@ -143,7 +143,8 @@ public interface SdnControllerApi extends AutoCloseable {
                     throws NetworkPortNotFoundException, Exception;
 
     /**
-     * On board a port as inspection interface
+     * On board a port as inspection interface. This call is assumed to be idempotent. i.e calls to register the same
+     * port multiple times will result in no-op.
      *
      * @param inspectionPort
      *            Inspection port to on board
@@ -180,13 +181,13 @@ public interface SdnControllerApi extends AutoCloseable {
     String getVersion();
 
     /**
-     * 
+     *
      * Method returns Status object which will provide the following information
-     * 
+     *
      * name: SDNController's Name
      * version: SDNController's version
      * controllerReady: This boolean flag if true represents that SDN controller is ready to serve
-     * 
+     *
      * @return
      */
     Status getStatus() throws Exception;
