@@ -37,7 +37,7 @@ public interface SdnControllerApi extends AutoCloseable {
      *            existing hooks will be push down from the point of insertion. The order range is zero based where -1
      *            symbolizes to append as last
      */
-    void installInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag,
+    void installInspectionHook(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
@@ -49,7 +49,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @param inspectionPort
      *            The inspection port belonging to network inspection device.
      */
-    void removeInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort) throws Exception;
+    void removeInspectionHook(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort) throws Exception;
 
     /**
      * Remove previously installed network hooks placed on behalf of network port.
@@ -71,7 +71,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @param tag
      *            The tag value to set
      */
-    void setInspectionHookTag(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag)
+    void setInspectionHookTag(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort, Long tag)
             throws NetworkPortNotFoundException, Exception;
 
     /**
@@ -83,7 +83,7 @@ public interface SdnControllerApi extends AutoCloseable {
      *            The inspection port belonging to network inspection device.
      * @return The current inspection tag
      */
-    Long getInspectionHookTag(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
+    Long getInspectionHookTag(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
     /**
@@ -98,7 +98,7 @@ public interface SdnControllerApi extends AutoCloseable {
      *
      * @throws Exception
      */
-    void setInspectionHookFailurePolicy(NetworkPortElement inspectedPort, NetworkPortElement inspectionPorts,
+    void setInspectionHookFailurePolicy(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort,
             FailurePolicyType failurePolicyType) throws NetworkPortNotFoundException, Exception;
 
     /**
@@ -111,7 +111,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @return The current failure policy
      */
     FailurePolicyType getInspectionHookFailurePolicy(NetworkPortElement inspectedPort,
-            NetworkPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
+            InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
 
     /**
      * Return list of inspected port on which behalf inspection hooks are installed.
@@ -132,12 +132,12 @@ public interface SdnControllerApi extends AutoCloseable {
      */
     //    public abstract List<NetworkPortElement> getInspectionPorts(NetworkPortElement inspectedPort) throws Exception;
 
-    InspectionHookElement getInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
+    InspectionHookElement getInspectionHook(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
     void updateInspectionHook(InspectionHookElement inspectionHook) throws NetworkPortNotFoundException, Exception;
 
-    void updateInspectionHook(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long tag,
+    void updateInspectionHook(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
@@ -148,7 +148,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @param inspectionPort
      *            Inspection port to on board
      */
-    void registerInspectionPort(NetworkPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
+    void registerInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
 
     /**
      * Get inspection port information
@@ -156,13 +156,13 @@ public interface SdnControllerApi extends AutoCloseable {
      * @param inspectionPort
      *            Inspection port
      */
-    InspectionPortElement getInspectionPort(NetworkPortElement inspectionPort)
+    InspectionPortElement getInspectionPort(InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
-    void setInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort, Long order)
+    void setInspectionHookOrder(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort, Long order)
             throws NetworkPortNotFoundException, Exception;
 
-    Long getInspectionHookOrder(NetworkPortElement inspectedPort, NetworkPortElement inspectionPort)
+    Long getInspectionHookOrder(NetworkPortElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
     /**

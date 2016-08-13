@@ -1,9 +1,12 @@
 package com.intelsecurity.isc.plugin.controller.element;
 
-
+/*
+ * Contains Inspection port information. If the ingress and egress ports are the same, then the same port will need to
+ * be returned for either of the methods.
+ */
 public interface InspectionPortElement {
 
-    public String getId();
+    NetworkPortElement getIngressPort();
 
-    public NetworkPortElement getInspectionPort();
+    NetworkPortElement getEgressPort();
 }

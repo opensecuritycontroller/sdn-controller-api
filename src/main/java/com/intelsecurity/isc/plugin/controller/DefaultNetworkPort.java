@@ -11,6 +11,9 @@ public class DefaultNetworkPort implements NetworkPortElement {
     private String macAddress;
     private List<String> portIPs = new ArrayList<String>();
 
+    public DefaultNetworkPort() {
+    }
+
     public DefaultNetworkPort(NetworkPortElement port) {
         this.portId = port.getPortId();
         this.macAddress = port.getMacAddress();
@@ -32,10 +35,6 @@ public class DefaultNetworkPort implements NetworkPortElement {
         return this.macAddress;
     }
 
-    public void setPortIPs(List<String> portIPs) {
-        this.portIPs = portIPs;
-    }
-
     @Override
     public String toString() {
         return "DefaultNetworkPort [portId=" + this.portId + ", macAddress=" + this.macAddress + "]";
@@ -44,6 +43,14 @@ public class DefaultNetworkPort implements NetworkPortElement {
     @Override
     public List<String> getPortIPs() {
         return this.portIPs;
+    }
+
+    public void setPortId(String portId) {
+        this.portId = portId;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
     }
 
 }
