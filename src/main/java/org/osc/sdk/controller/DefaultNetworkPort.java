@@ -1,9 +1,9 @@
-package com.intelsecurity.isc.plugin.controller;
+package org.osc.sdk.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.intelsecurity.isc.plugin.controller.element.NetworkPortElement;
+import org.osc.sdk.controller.element.NetworkPortElement;
 
 public class DefaultNetworkPort implements NetworkPortElement {
 

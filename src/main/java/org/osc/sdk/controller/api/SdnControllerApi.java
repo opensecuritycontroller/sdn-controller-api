@@ -1,17 +1,17 @@
-package com.intelsecurity.isc.plugin.controller.api;
+package org.osc.sdk.controller.api;
 
 import java.util.HashMap;
 
-import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
-import com.intelsecurity.isc.plugin.controller.FlowInfo;
-import com.intelsecurity.isc.plugin.controller.FlowPortInfo;
-import com.intelsecurity.isc.plugin.controller.Status;
-import com.intelsecurity.isc.plugin.controller.TagEncapsulationType;
-import com.intelsecurity.isc.plugin.controller.element.InspectionHookElement;
-import com.intelsecurity.isc.plugin.controller.element.InspectionPortElement;
-import com.intelsecurity.isc.plugin.controller.element.NetworkPortElement;
-import com.intelsecurity.isc.plugin.controller.element.VirtualizationConnectorElement;
-import com.intelsecurity.isc.plugin.controller.exception.NetworkPortNotFoundException;
+import org.osc.sdk.controller.FailurePolicyType;
+import org.osc.sdk.controller.FlowInfo;
+import org.osc.sdk.controller.FlowPortInfo;
+import org.osc.sdk.controller.Status;
+import org.osc.sdk.controller.TagEncapsulationType;
+import org.osc.sdk.controller.element.InspectionHookElement;
+import org.osc.sdk.controller.element.InspectionPortElement;
+import org.osc.sdk.controller.element.NetworkPortElement;
+import org.osc.sdk.controller.element.VirtualizationConnectorElement;
+import org.osc.sdk.controller.exception.NetworkPortNotFoundException;
 
 /**
  *

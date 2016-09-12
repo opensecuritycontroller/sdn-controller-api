@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.plugin.controller;
+package org.osc.sdk.controller;
 
 public class FlowPortInfo {
     public FlowInfo flow;

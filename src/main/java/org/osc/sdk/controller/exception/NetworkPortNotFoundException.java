@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.plugin.controller.exception;
+package org.osc.sdk.controller.exception;
 
 @SuppressWarnings("serial")
 public class NetworkPortNotFoundException extends Exception {

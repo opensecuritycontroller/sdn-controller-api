@@ -1,7 +1,7 @@
-package com.intelsecurity.isc.plugin.controller.element;
+package org.osc.sdk.controller.element;
 
-import com.intelsecurity.isc.plugin.controller.FailurePolicyType;
-import com.intelsecurity.isc.plugin.controller.TagEncapsulationType;
+import org.osc.sdk.controller.FailurePolicyType;
+import org.osc.sdk.controller.TagEncapsulationType;
 
 /**
  * Inspection hook represents a redirection rule placed on the SDN controller to redirect traffic

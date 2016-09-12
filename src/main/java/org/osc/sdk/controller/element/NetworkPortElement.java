@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.plugin.controller.element;
+package org.osc.sdk.controller.element;
 
 import java.util.List;
 

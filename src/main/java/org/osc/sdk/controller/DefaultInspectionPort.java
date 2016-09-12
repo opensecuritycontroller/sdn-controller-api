@@ -1,7 +1,7 @@
-package com.intelsecurity.isc.plugin.controller;
+package org.osc.sdk.controller;
 
-import com.intelsecurity.isc.plugin.controller.element.InspectionPortElement;
-import com.intelsecurity.isc.plugin.controller.element.NetworkPortElement;
+import org.osc.sdk.controller.element.InspectionPortElement;
+import org.osc.sdk.controller.element.NetworkPortElement;
 
 public class DefaultInspectionPort implements InspectionPortElement {
 

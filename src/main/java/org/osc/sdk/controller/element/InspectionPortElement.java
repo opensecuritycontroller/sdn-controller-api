@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.plugin.controller.element;
+package org.osc.sdk.controller.element;
 
 /*
  * Contains Inspection port information. If the ingress and egress ports are the same, then the same port will need to

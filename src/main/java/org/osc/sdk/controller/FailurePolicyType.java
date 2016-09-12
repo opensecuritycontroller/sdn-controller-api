@@ -1,4 +1,4 @@
-package com.intelsecurity.isc.plugin.controller;
+package org.osc.sdk.controller;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
