@@ -42,10 +42,20 @@ public interface SdnControllerApi extends AutoCloseable {
 
     /**
      * Delete NetworkElement created with registerNetworkElement like PortGroup
-     * @param elementId Id of the element to be deleted
+     * @param element
+     *          Element to be deleted
      * @throws Exception
      */
-    void deleteNetworkElement(String elementId) throws Exception;
+    void deleteNetworkElement(NetworkElement element) throws Exception;
+
+    /**
+     * Get the children elements of the network element
+     * For example get the protected workload ports of the PortGroup
+     * @param element
+     * @return
+     * @throws Exception
+     */
+    List<NetworkElement> getNetworkElements(NetworkElement element) throws Exception;
 
     /**
      * Install network hooks to inspect traffic of given network port by another network port
