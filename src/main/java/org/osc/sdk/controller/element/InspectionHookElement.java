@@ -18,7 +18,7 @@ public interface InspectionHookElement {
 
     public FailurePolicyType getFailurePolicyType();
 
-    public NetworkPortElement getInspectedPort();
+    public NetworkElement getInspectedPort();
 
     public InspectionPortElement getInspectionPort();
 }

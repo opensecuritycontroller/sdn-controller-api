@@ -2,10 +2,10 @@ package org.osc.sdk.controller.element;
 
 import java.util.List;
 
-public interface NetworkPortElement {
-    public String getPortId();
+public interface NetworkElement {
+    public String getElementId();
 
-    public String getMacAddress();
+    public List<String> getMacAddresses();
 
     public List<String> getPortIPs();
 

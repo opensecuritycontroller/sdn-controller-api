@@ -1,28 +1,28 @@
 package org.osc.sdk.controller;
 
 import org.osc.sdk.controller.element.InspectionPortElement;
-import org.osc.sdk.controller.element.NetworkPortElement;
+import org.osc.sdk.controller.element.NetworkElement;
 
 public class DefaultInspectionPort implements InspectionPortElement {
 
-    private NetworkPortElement ingressPort;
-    private NetworkPortElement egressPort;
+    private NetworkElement ingressPort;
+    private NetworkElement egressPort;
 
     public DefaultInspectionPort() {
     }
 
-    public DefaultInspectionPort(NetworkPortElement ingressPort, NetworkPortElement egressPort) {
+    public DefaultInspectionPort(NetworkElement ingressPort, NetworkElement egressPort) {
         this.ingressPort = ingressPort;
         this.egressPort = egressPort;
     }
 
     @Override
-    public NetworkPortElement getIngressPort() {
+    public NetworkElement getIngressPort() {
         return this.ingressPort;
     }
 
     @Override
-    public NetworkPortElement getEgressPort() {
+    public NetworkElement getEgressPort() {
         return this.egressPort;
     }
 

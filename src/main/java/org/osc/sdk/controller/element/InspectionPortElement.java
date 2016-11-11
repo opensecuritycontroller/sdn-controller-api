@@ -6,7 +6,7 @@ package org.osc.sdk.controller.element;
  */
 public interface InspectionPortElement {
 
-    NetworkPortElement getIngressPort();
+    NetworkElement getIngressPort();
 
-    NetworkPortElement getEgressPort();
+    NetworkElement getEgressPort();
 }
