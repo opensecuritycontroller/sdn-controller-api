@@ -1,11 +1,5 @@
 package org.osc.sdk.controller;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "failurePolicyType")
-@XmlAccessorType(XmlAccessType.FIELD)
 public enum FailurePolicyType {
     FAIL_OPEN("FAIL_OPEN"), FAIL_CLOSE("FAIL_CLOSE"), NA("N/A");
 

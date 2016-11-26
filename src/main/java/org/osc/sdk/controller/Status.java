@@ -1,11 +1,5 @@
 package org.osc.sdk.controller;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "status")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Status {
 
     private String name;
@@ -13,7 +7,7 @@ public class Status {
     private boolean controllerReady;
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Status(String name, String version, boolean canServe) {
@@ -28,7 +22,7 @@ public class Status {
     }
 
     public String getVersion() {
-        return version;
+        return this.version;
     }
 
     public void setVersion(String version) {
@@ -36,7 +30,7 @@ public class Status {
     }
 
     public boolean isControllerReady() {
-        return controllerReady;
+        return this.controllerReady;
     }
 
     public void setControllerReady(boolean canServe) {
@@ -45,7 +39,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return "Status [name=" + name + ", version=" + version + ", controllerReady=" + controllerReady + "]";
+        return "Status [name=" + this.name + ", version=" + this.version + ", controllerReady=" + this.controllerReady + "]";
     }
 
 }
