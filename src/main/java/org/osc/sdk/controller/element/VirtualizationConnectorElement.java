@@ -2,6 +2,9 @@ package org.osc.sdk.controller.element;
 
 import java.util.Map;
 
+import org.osgi.annotation.versioning.ProviderType;
+
+@ProviderType
 public interface VirtualizationConnectorElement {
 
     String getName();

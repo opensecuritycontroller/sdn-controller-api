@@ -13,10 +13,12 @@ import org.osc.sdk.controller.element.InspectionPortElement;
 import org.osc.sdk.controller.element.NetworkElement;
 import org.osc.sdk.controller.element.VirtualizationConnectorElement;
 import org.osc.sdk.controller.exception.NetworkPortNotFoundException;
+import org.osgi.annotation.versioning.ConsumerType;
 
 /**
  *
  */
+@ConsumerType
 public interface SdnControllerApi extends AutoCloseable {
 
     /**
