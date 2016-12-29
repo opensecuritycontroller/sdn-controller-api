@@ -6,10 +6,10 @@ import org.osgi.annotation.versioning.ConsumerType;
 
 @ConsumerType
 public interface NetworkElement {
-    public String getElementId();
+    String getElementId();
 
-    public List<String> getMacAddresses();
+    List<String> getMacAddresses();
 
-    public List<String> getPortIPs();
+    List<String> getPortIPs();
 
 }

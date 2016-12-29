@@ -5,7 +5,7 @@ public enum FailurePolicyType {
 
     private final String text;
 
-    private FailurePolicyType(final String text) {
+    FailurePolicyType(final String text) {
         this.text = text;
     }
 

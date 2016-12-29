@@ -10,7 +10,7 @@ public enum TagEncapsulationType {
 
     private final String text;
 
-    private TagEncapsulationType(final String text) {
+    TagEncapsulationType(final String text) {
         this.text = text;
     }
 
