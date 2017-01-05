@@ -11,5 +11,7 @@ public interface NetworkElement {
     List<String> getMacAddresses();
 
     List<String> getPortIPs();
+    
+    public String getParentId();
 
 }

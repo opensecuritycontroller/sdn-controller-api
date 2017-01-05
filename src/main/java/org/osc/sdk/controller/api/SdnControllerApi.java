@@ -23,27 +23,28 @@ public interface SdnControllerApi extends AutoCloseable {
 
     /**
      * Create NetworkElement with a list of child elements
-     * For example, create PortGroup with ports of protected workloads
+     * For example, create NetworkElement with ports of protected workloads
      * @param elements
      *          ports of protected workloads or any network element
-     * @return the created NetworkElement like PortGroup
+     * @return the created NetworkElement
      * @throws Exception
      */
     NetworkElement registerNetworkElement(List<NetworkElement> elements) throws Exception;
 
     /**
      * Update parent element with child_elements.
-     * For example update PortGroup's protected workloads ports. Send the entire child_elements for update
+     * For example update NetworkElement's protected workloads ports. Send the entire child_elements for update
      * @param element
-     *          update this portGroup
+     *          update this networkElement
      * @param child_elements
      *          list of child elements
+     * @return the updated or recreated NetworkElement
      * @throws Exception
      */
-    void updateNetworkElement(NetworkElement element, List<NetworkElement> childElements) throws Exception;
+    NetworkElement updateNetworkElement(NetworkElement element, List<NetworkElement> childElements) throws Exception;
 
     /**
-     * Delete NetworkElement created with registerNetworkElement like PortGroup
+     * Delete NetworkElement created with registerNetworkElement
      * @param element
      *          Element to be deleted
      * @throws Exception
@@ -52,7 +53,7 @@ public interface SdnControllerApi extends AutoCloseable {
 
     /**
      * Get the children elements of the network element
-     * For example get the protected workload ports of the PortGroup
+     * For example get the protected workload ports of the Port Group
      * @param element
      * @return
      * @throws Exception
@@ -63,8 +64,8 @@ public interface SdnControllerApi extends AutoCloseable {
      * Install network hooks to inspect traffic of given network port by another network port
      * which is part of an inspection network device.
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
+     * @param networkElem
+     *            The port on which behalf traffic is being inspected or a networkElement containing protected ports
      * @param inspectionPort
      *            The inspection port belonging to network inspection devices.
      * @param tag
@@ -78,29 +79,27 @@ public interface SdnControllerApi extends AutoCloseable {
      *            existing hooks will be push down from the point of insertion. The order range is zero based where -1
      *            symbolizes to append as last
      */
-    void installInspectionHook(NetworkElement inspectedPort, InspectionPortElement inspectionPort, Long tag,
+    void installInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
     /**
      * Remove previously installed network hooks placed on behalf of network port.
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
+     * @param networkElem
+     *            The port on which behalf traffic is being inspected or a networkElement containing protected ports
      * @param inspectionPort
      *            The inspection port belonging to network inspection device.
      */
-    void removeInspectionHook(NetworkElement inspectedPort, InspectionPortElement inspectionPort) throws Exception;
+    void removeInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort) throws Exception;
 
     /**
      * Remove previously installed network hooks placed on behalf of network port.
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
+     * @param networkElem
+     *            The port on which behalf traffic is being inspected or a networkElement containing protected ports
      */
-    void removeAllInspectionHooks(NetworkElement inspectedPort) throws Exception;
+    void removeAllInspectionHooks(NetworkElement networkElem) throws Exception;
 
     /**
      * Set data path policy tag of a specific inspection hook.
@@ -194,7 +193,7 @@ public interface SdnControllerApi extends AutoCloseable {
      * @throws NetworkPortNotFoundException
      * @throws Exception
      */
-    String registerInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
+    void registerInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
 
     /**
      * Get inspection port information
@@ -278,6 +277,8 @@ public interface SdnControllerApi extends AutoCloseable {
     boolean isUsingProviderCreds();
 
     boolean isSupportQueryPortInfo();
+
+    boolean isPortGroupSupported();
 
 
     /**

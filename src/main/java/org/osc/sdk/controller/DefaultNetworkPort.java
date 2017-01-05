@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.osc.sdk.controller.element.NetworkElement;
 
+
+
 public class DefaultNetworkPort implements NetworkElement {
 
     private String portId;
     private List<String> macAddresses = new ArrayList<String>();
     private List<String> portIPs = new ArrayList<String>();
+    private String parentId;
 
     public DefaultNetworkPort() {
     }
@@ -18,6 +21,7 @@ public class DefaultNetworkPort implements NetworkElement {
         this.portId = port.getElementId();
         this.macAddresses = port.getMacAddresses();
         this.portIPs = port.getPortIPs();
+        this.parentId = port.getParentId();
     }
 
     public DefaultNetworkPort(String portId, String macAddress) {
@@ -37,7 +41,8 @@ public class DefaultNetworkPort implements NetworkElement {
 
     @Override
     public String toString() {
-        return "DefaultNetworkPort [portId=" + this.portId + ", macAddresses=" + this.macAddresses  + "]";
+        return "DefaultNetworkPort [portId=" + this.portId + ", macAddresses=" + this.macAddresses + ", parentId="
+                + this.parentId  + "]";
     }
 
     @Override
@@ -47,6 +52,15 @@ public class DefaultNetworkPort implements NetworkElement {
 
     public void setElementId(String portId) {
         this.portId = portId;
+    }
+
+    @Override
+    public String getParentId() {
+        return this.parentId;
+    }
+
+    public void setParentId(String parentId){
+        this.parentId = parentId;
     }
 
 }
