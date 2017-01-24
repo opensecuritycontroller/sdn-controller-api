@@ -12,6 +12,6 @@ public interface NetworkElement {
 
     List<String> getPortIPs();
     
-    public String getParentId();
+    String getParentId();
 
 }
