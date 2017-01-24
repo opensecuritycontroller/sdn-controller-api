@@ -1,8 +1,5 @@
 package org.osc.sdk.controller.api;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.osc.sdk.controller.FailurePolicyType;
 import org.osc.sdk.controller.FlowInfo;
 import org.osc.sdk.controller.FlowPortInfo;
@@ -14,6 +11,9 @@ import org.osc.sdk.controller.element.NetworkElement;
 import org.osc.sdk.controller.element.VirtualizationConnectorElement;
 import org.osc.sdk.controller.exception.NetworkPortNotFoundException;
 import org.osgi.annotation.versioning.ConsumerType;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
