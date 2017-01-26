@@ -1,20 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.osc.core</groupId>
-		<artifactId>vmiDCAll</artifactId>
-		<version>1.0</version>
-		<relativePath>../vmiDCAll/</relativePath>
-	</parent>
-
-	<artifactId>IscSdnControllerPlugin</artifactId>
-	<name>IscSdnControllerPlugin</name>
-
+    <groupId>org.osc.api</groupId>
+	<version>1.0</version>
+	<description>OSC SDN Controller API</description>
+	<artifactId>sdn-controller-api</artifactId>
+	<name>org.osc.api:sdn-controller-api</name>
+    
 	<dependencies>
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi.annotation</artifactId>
+            <version>6.0.1</version>
+            <scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -34,13 +32,13 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.5</version>
 				<configuration>
-					<finalName>IscSdnControllerPlugin</finalName>
 					<archive>
 						<manifestEntries>
 							<Build-Time>${maven.build.timestamp}</Build-Time>
 							<Implementation-Build>${buildNumber}</Implementation-Build>
 							<Implementation-Version>${productVersion}</Implementation-Version>
 						</manifestEntries>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
 				</configuration>
 			</plugin>
@@ -50,7 +48,7 @@
 				<artifactId>maven-source-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<finalName>OscSdnControllerPlugin</finalName>
+					<finalName>sdn-controller-api</finalName>
 				</configuration>
 				<executions>
 					<execution>
@@ -65,8 +63,96 @@
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>
 				<artifactId>bnd-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>bnd-process</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
+            
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.15</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>6.7</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<configLocation>checkstyle.xml</configLocation>
+							<!-- Turning the fail-on-violation flag on -->
+							<failOnViolation>true</failOnViolation>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+            
+            <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>High</threshold>
+					<xmlOutput>true</xmlOutput>
+					<!-- Turning the fail-on-error flag on -->
+					<failOnError>true</failOnError>
+					<omitVisitors>DefaultEncodingDetector</omitVisitors>
+					<argLine>-Xmx1024m</argLine>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
 		</plugins>
 	</build>
+    <reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>High</threshold>
+					<omitVisitors>DefaultEncodingDetector</omitVisitors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.15</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 
 </project>
