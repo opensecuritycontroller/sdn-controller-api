@@ -6,7 +6,7 @@ import org.osgi.annotation.versioning.ConsumerType;
 
 /**
  * Inspection hook represents a redirection rule placed on the SDN controller to redirect traffic
- * from the Inspected port -> Inspection port.
+ * from the Inspected port to the Inspection port.
  */
 @ConsumerType
 public interface InspectionHookElement {
