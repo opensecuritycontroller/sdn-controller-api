@@ -16,6 +16,9 @@
  *******************************************************************************/
 package org.osc.sdk.controller.api;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.osc.sdk.controller.FailurePolicyType;
 import org.osc.sdk.controller.FlowInfo;
 import org.osc.sdk.controller.FlowPortInfo;
@@ -27,9 +30,6 @@ import org.osc.sdk.controller.element.NetworkElement;
 import org.osc.sdk.controller.element.VirtualizationConnectorElement;
 import org.osc.sdk.controller.exception.NetworkPortNotFoundException;
 import org.osgi.annotation.versioning.ConsumerType;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  *
@@ -226,19 +226,6 @@ public interface SdnControllerApi extends AutoCloseable {
     Long getInspectionHookOrder(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
-    /**
-     * SDN Controller name. This name will show up on ISC controller drop down when adding VC
-     *
-     * @return SDN Controller name
-     */
-    String getName();
-
-    /**
-     * SDN Controller version informational string
-     *
-     * @return SDN Controller version
-     */
-    String getVersion();
 
     /**
      *
@@ -268,34 +255,6 @@ public interface SdnControllerApi extends AutoCloseable {
      *            region to operate on
      */
     void setRegion(String region);
-
-    /**
-     * Check if SDN Controller supports traffic redirection to a VNF running on a remote hypervisor
-     *
-     * @return true if SDN controller capable of redirection to VNF running on another host
-     */
-    boolean isOffboxRedirectionSupported();
-
-    /**
-     * Check if SDN Controller supports traffic redirection to multiple VNFs (service function chaining)
-     *
-     * @return true if SDN controller capable of redirection to multiple VNFs set up in a chain
-     */
-    boolean isServiceFunctionChainingSupported();
-
-    /**
-     * Check if SDN Controller supports inspection port failure detection and can bypass traffic inspection
-     *
-     * @return true if SDN controller capable of supporting failure policy
-     */
-    boolean isFailurePolicySupported();
-
-    boolean isUsingProviderCreds();
-
-    boolean isSupportQueryPortInfo();
-
-    boolean isPortGroupSupported();
-
 
     /**
      * Query port information based on 5 tuple flow info + timestamp.
