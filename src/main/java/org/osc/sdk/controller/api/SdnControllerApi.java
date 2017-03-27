@@ -94,6 +94,8 @@ public interface SdnControllerApi extends AutoCloseable {
      *            The order in which to insert the inspection hook. If other inspection hooks are already in place, all
      *            existing hooks will be push down from the point of insertion. The order range is zero based where -1
      *            symbolizes to append as last
+     * @return return the inspectionHookElement with the hookId value of the installed Inspection Hook
+     * @throws NetworkPortNotFoundException, Exception
      */
     InspectionHookElement installInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
