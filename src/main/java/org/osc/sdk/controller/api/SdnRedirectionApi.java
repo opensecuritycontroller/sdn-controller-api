@@ -92,7 +92,7 @@ public interface SdnRedirectionApi extends AutoCloseable {
      */
     String installInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
-            throws NetworkPortNotFoundException, Exception;
+                    throws NetworkPortNotFoundException, Exception;
 
     /**
      * Remove previously installed network hooks placed on behalf of network port.
@@ -103,6 +103,22 @@ public interface SdnRedirectionApi extends AutoCloseable {
      *            The inspection port belonging to network inspection device.
      */
     void removeInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort) throws Exception;
+
+    /**
+     * Remove the previously installed inspection hook given its identifier.
+     *
+     * @param inspectionHookId
+     *            The identifier of the inspection hook to be removed.
+     */
+    void removeInspectionHook(String inspectionHookId) throws Exception;
+
+    /**
+     * Retrieves a previously installed inspection hook given its identifier.
+     *
+     * @param inspectionHookId
+     *            The identifier of the inspection hook to be retrieved.
+     */
+    InspectionHookElement getInspectionHook(String inspectionHookId) throws Exception;
 
     /**
      * Remove previously installed network hooks placed on behalf of network port.
@@ -186,11 +202,11 @@ public interface SdnRedirectionApi extends AutoCloseable {
     InspectionHookElement getInspectionHook(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
-    void updateInspectionHook(InspectionHookElement inspectionHook) throws NetworkPortNotFoundException, Exception;
 
-    void updateInspectionHook(NetworkElement inspectedPort, InspectionPortElement inspectionPort, Long tag,
+    // TODO emanoel: Add and/or fix javadoc of this interface.
+    void updateInspectionHook(String inspectionHookId, NetworkElement inspectedPort, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
-            throws NetworkPortNotFoundException, Exception;
+                    throws NetworkPortNotFoundException, Exception;
 
     /**
      * On board a port as inspection interface. This call is assumed to be idempotent. i.e calls to register the same
