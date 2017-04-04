@@ -202,11 +202,8 @@ public interface SdnRedirectionApi extends AutoCloseable {
     InspectionHookElement getInspectionHook(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
-
-    // TODO emanoel: Add and/or fix javadoc of this interface.
-    void updateInspectionHook(String inspectionHookId, NetworkElement inspectedPort, InspectionPortElement inspectionPort, Long tag,
-            TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
-                    throws NetworkPortNotFoundException, Exception;
+    void updateInspectionHook(InspectionHookElement existingInspectionHook)
+            throws NetworkPortNotFoundException, Exception;
 
     /**
      * On board a port as inspection interface. This call is assumed to be idempotent. i.e calls to register the same
