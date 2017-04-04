@@ -206,6 +206,14 @@ public interface SdnRedirectionApi extends AutoCloseable {
     void registerInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
 
     /**
+     * Remove previously on boarded network ports as inspection interfaces.
+     *
+     * @param inspectionPort
+     *            Inspection port which was on boarded
+     */
+    void removeInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
+
+    /**
      * Get inspection port information
      *
      * @param inspectionPort
