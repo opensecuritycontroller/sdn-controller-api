@@ -130,7 +130,7 @@
 					<effort>Max</effort>
 					<threshold>High</threshold>
 					<xmlOutput>true</xmlOutput>
-					<!-- Turning the fail-on-error flag on. -->
+					<!-- Turning the fail-on-error flag on -->
 					<failOnError>true</failOnError>
 					<omitVisitors>DefaultEncodingDetector</omitVisitors>
 					<argLine>-Xmx1024m</argLine>
