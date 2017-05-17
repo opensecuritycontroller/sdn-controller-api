@@ -28,6 +28,10 @@
 			<id>osc-nexus</id>
 			<url>http://ci.opensecuritycontroller.org:8082/nexus/content/repositories/releases</url>
 		</repository>
+        <snapshotRepository>
+			<id>osc-nexus</id>
+			<url>http://ci.opensecuritycontroller.org:8082/nexus/content/repositories/osc-snapshot</url>
+		</snapshotRepository>
 	</distributionManagement>
 	<dependencies>
 		<dependency>
