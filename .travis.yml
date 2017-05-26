@@ -14,8 +14,10 @@
 # limitations under the License.
 
 language:
-	- java
+    - java
 jdk:
-	-openjdk8
+    - oraclejdk8
+install: 
+    true
 script:
-	mvn clean install
+    mvn install
