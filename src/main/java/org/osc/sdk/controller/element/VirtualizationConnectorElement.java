@@ -43,6 +43,8 @@ public interface VirtualizationConnectorElement {
 
     String getProviderAdminTenantName();
 
+    String getProviderAdminDomainId();
+
     boolean isProviderHttps();
 
     Map<String, String> getProviderAttributes();
