@@ -1,5 +1,5 @@
 # SDN Controller API
-[![Build Status](https://travis-ci.com/opensecuritycontroller/sdn-controller-api.svg?token=FzxT1Qx9H6sqEHPcKhqW&branch=master)](https://travis-ci.com/opensecuritycontroller/sdn-controller-api)
+[![Build Status](https://travis-ci.org/opensecuritycontroller/sdn-controller-api.svg?branch=master)](https://travis-ci.org/opensecuritycontroller/sdn-controller-api)
 
 This project defines the interfaces in the Open Source Controller (OSC) SDN Plugin SDK. This SDK defines the functionality OSC expects from an SDN controller. OSC communicates with the SDN controller through these interfaces to implement traffic redirection and notify the SDN layer of network changes.
 
