@@ -16,15 +16,49 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+/**
+ * This class represents a flow info to be used to query six tuple information
+ */
 public class FlowInfo {
 
+	/**
+	 * IP address of the source
+	 */
     public String sourceIpAddress;
+
+	/**
+	 * MAC address of the source
+	 */
     public String sourceMacAddress;
+
+	/**
+	 * Port information of the source
+	 */
     public int sourcePort;
+
+	/**
+	 * IP address of the destination
+	 */
     public String destinationIpAddress;
+
+	/**
+	 * MAC address of the source
+	 */
     public String destinationMacAddress;
+
+	/**
+	 * Port information of the source
+	 */
     public int destinationPort;
+
+	/**
+	 * Protocol identifier
+	 */
     public int protocolId;
+
+	/**
+	 * Timestamp of a flow
+	 */
     public long flowTimestamp;
 
     @Override

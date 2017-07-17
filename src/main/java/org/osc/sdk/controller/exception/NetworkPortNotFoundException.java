@@ -16,9 +16,15 @@
  *******************************************************************************/
 package org.osc.sdk.controller.exception;
 
+/**
+ * This class represents a network port not found exception
+ */
 @SuppressWarnings("serial")
 public class NetworkPortNotFoundException extends Exception {
 
+	/**
+	 * Port identifier
+	 */
     private String portId;
 
     public NetworkPortNotFoundException(String portId, String message) {

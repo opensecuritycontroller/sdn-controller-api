@@ -16,50 +16,87 @@
  *******************************************************************************/
 package org.osc.sdk.controller.element;
 
-import org.osgi.annotation.versioning.ProviderType;
+import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
-import java.util.Map;
 
+import org.osgi.annotation.versioning.ProviderType;
+
+/**
+ * This interface represents a virtualization connector element.
+ */
 @ProviderType
 public interface VirtualizationConnectorElement {
 
+    /**
+     * @return the name of virtualization connector
+     */
     String getName();
 
+    /**
+     * @return the IP address of controller
+     */
     String getControllerIpAddress();
 
+    /**
+     * @return the user name of controller
+     */
     String getControllerUsername();
 
+    /**
+     * @return the password of controller
+     */
     String getControllerPassword();
 
+    /**
+     * @return true if controller is HTTPS, false otherwise
+     */
     boolean isControllerHttps();
 
+    /**
+     * @return the IP address pf provider
+     */
     String getProviderIpAddress();
 
+    /**
+     * @return the user name of provider
+     */
     String getProviderUsername();
 
+    /**
+     * @return the password of provider
+     */
     String getProviderPassword();
 
+    /**
+     * @return the name of provider admin tenant
+     */
     String getProviderAdminTenantName();
 
+    /**
+     * @return the identifier of provider admin domain
+     */
     String getProviderAdminDomainId();
 
+    /**
+     * @return true if provider is HTTPS, false otherwise
+     */
     boolean isProviderHttps();
 
+    /**
+     * @return the map of provider additional attributes
+     */
     Map<String, String> getProviderAttributes();
 
     /**
-     * Provides the SSL context of the client application (OSC) hosting the plugin
-     * @return
-     *          The SSLContext of the application (OSC) hosting the plugin
+     * @return the SSLContext of the application (OSC) hosting the plugin
      */
     SSLContext getSslContext();
 
     /**
-     * Provides the Truststore manager array of the client application (OSC) hosting the plugin
-     * @return
-     *          The Truststore manager of the application (OSC) hosting the plugin
+     * @return the Truststore manager of the application (OSC) hosting the plugin
+     * @throws Exception upon failure
      */
     TrustManager[] getTruststoreManager() throws Exception;
 }

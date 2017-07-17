@@ -20,14 +20,30 @@ import java.util.List;
 
 import org.osgi.annotation.versioning.ConsumerType;
 
+/**
+ * This interface represents a network element.
+ * Network Element is a port on which behalf traffic is being inspected or a element containing protected ports.
+ */
 @ConsumerType
 public interface NetworkElement {
+	/**
+	 * @return the identifier of network element
+	 */
     String getElementId();
 
+	/**
+	 * @return the list of MAC addresses
+	 */
     List<String> getMacAddresses();
 
+	/**
+	 * @return the list of port IPs
+	 */
     List<String> getPortIPs();
-    
+
+	/**
+	 * @return the identifier of network element's parent
+	 */
     String getParentId();
 
 }

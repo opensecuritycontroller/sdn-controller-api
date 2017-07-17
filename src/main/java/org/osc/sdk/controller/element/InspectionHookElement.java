@@ -21,22 +21,43 @@ import org.osc.sdk.controller.TagEncapsulationType;
 import org.osgi.annotation.versioning.ConsumerType;
 
 /**
- * Inspection hook represents a redirection rule placed on the SDN controller to redirect traffic
+ * This interface represents a redirection rule placed on the SDN controller to redirect traffic
  * from the Inspected port to the Inspection port.
  */
 @ConsumerType
 public interface InspectionHookElement {
+    /**
+     * @return the identifier of the inspection hook
+     */
     String getHookId();
 
+    /**
+     * @return the tag
+     */
     Long getTag();
 
+    /**
+     * @return the order
+     */
     Long getOrder();
 
+    /**
+     * @return the tag Encapsulation type
+     */
     TagEncapsulationType getEncType();
 
+    /**
+     * @return the failure policy type
+     */
     FailurePolicyType getFailurePolicyType();
 
+    /**
+     * @return the network element
+     */
     NetworkElement getInspectedPort();
 
+    /**
+     * @return the inspection port element
+     */
     InspectionPortElement getInspectionPort();
 }

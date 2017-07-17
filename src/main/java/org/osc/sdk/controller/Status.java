@@ -16,11 +16,25 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+/**
+ * This class represents the status of SDN controller.
+ */
 public class Status {
 
-    private String name;
-    private String version;
-    private boolean controllerReady;
+	/**
+	 * The name of SDN controller
+	 */
+	private String name;
+
+	/**
+	 * The version of SDN controller
+	 */
+	private String version;
+
+	/**
+	 * Indicates whether the SDN controller is ready to provide service
+	 */
+	private boolean controllerReady;
 
     public String getName() {
         return this.name;
