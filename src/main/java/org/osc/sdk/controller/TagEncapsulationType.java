@@ -17,7 +17,7 @@
 package org.osc.sdk.controller;
 
 /**
- * The encapsulation type security service supports.
+ * This enum represents the encapsulation type security service supports.
  */
 public enum TagEncapsulationType {
 	/**
