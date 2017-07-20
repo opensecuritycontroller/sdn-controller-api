@@ -16,12 +16,38 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+/**
+ * This enum represents the encapsulation type security service supports.
+ */
 public enum TagEncapsulationType {
+	/**
+	 * VLAN encapsulation type.
+	 */
     VLAN("VLAN"),
+
+    /**
+     * MPLS encapsulation type.
+     */
     MPLS("MPLS"),
+
+    /**
+     * GRE encapsulation type.
+     */
     GRE("GRE"),
+
+    /**
+     * QINQ encapsulation type.
+     */
     QINQ("QINQ"),
+
+    /**
+     * VXLAN encapsulation type.
+     */
     VXLAN("VXLAN"),
+
+    /**
+     * NSH encapsulation type.
+     */
     NSH("NSH");
 
     private final String text;

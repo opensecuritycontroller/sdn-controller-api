@@ -16,15 +16,29 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+/**
+ * This class represents a flow information with source and destination port identifier.
+ */
 public class FlowPortInfo {
+
+	/**
+	 * Flow info to be used to query six tuple information
+	 */
     public FlowInfo flow;
 
+	/**
+	 * Port identifier of the source
+	 */
     public String sourcePortId;
+
+	/**
+	 * Port identifier of the destination
+	 */
     public String destinationPortId;
 
     @Override
     public String toString() {
-        return "FlowPortInfo [flow=" + flow + ", sourcePortId=" + sourcePortId + ", destinationPortId="
-                + destinationPortId + "]";
+        return "FlowPortInfo [flow=" + this.flow + ", sourcePortId=" + this.sourcePortId + ", destinationPortId="
+                + this.destinationPortId + "]";
     }
 }

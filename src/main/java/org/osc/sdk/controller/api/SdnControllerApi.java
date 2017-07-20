@@ -18,6 +18,7 @@ package org.osc.sdk.controller.api;
 
 import java.util.HashMap;
 
+import org.osc.sdk.controller.Constants;
 import org.osc.sdk.controller.FlowInfo;
 import org.osc.sdk.controller.FlowPortInfo;
 import org.osc.sdk.controller.Status;
@@ -25,44 +26,46 @@ import org.osc.sdk.controller.element.VirtualizationConnectorElement;
 import org.osgi.annotation.versioning.ConsumerType;
 
 /**
- *
+ * This interface represents the main entry point for all the interactions with the SDN controller.
+ * It provides a way for OSC to instantiate the other SDN controller APIs and basic information like
+ * the status of the SDN controller and its URL.
+ * <p>
+ * Classes implementing this interface must be published through the OSGi service registry and must
+ * contain the following REQUIRED properties:
+ * <ul>
+ * <li> {@link Constants#PLUGIN_NAME}
+ * <li> {@link Constants#SUPPORT_OFFBOX_REDIRECTION}
+ * <li> {@link Constants#SUPPORT_SFC}
+ * <li> {@link Constants#SUPPORT_FAILURE_POLICY}
+ * <li> {@link Constants#USE_PROVIDER_CREDS}
+ * <li> {@link Constants#QUERY_PORT_INFO}
+ * <li> {@link Constants#SUPPORT_PORT_GROUP}
+ * </ul>
  */
 @ConsumerType
 public interface SdnControllerApi extends AutoCloseable {
 
     /**
-     *
-     * Method returns Status object which will provide the following information
-     *
-     * name: SDNController's Name
-     * version: SDNController's version
-     * controllerReady: This boolean flag if true represents that SDN controller is ready to serve
-     *
-     * @return
+     * @param vc  provides context information of the virtualization connector
+     * @param region  provides information about region to operate on
+     * @return the status of SDN controller
+     * @throws Exception upon failure
      */
     Status getStatus(VirtualizationConnectorElement vc, String region) throws Exception;
 
     /**
-     * Create redirection api with Virtualization Connector context through which authentication information can be
-     * obtained
-     * and the region to operate on
-     *
-     * @param vc
-     *            Virtualization Connector Element
-     * @param region
-     *            region to operate on
+     * @param vc  provides context information of the virtualization connector
+     * @param region  provides information about region to operate on
+     * @return the APIs used by OSC to manage traffic redirection
      */
     SdnRedirectionApi createRedirectionApi(VirtualizationConnectorElement vc, String region);
 
     /**
-     * Query port information based on 5 tuple flow info + timestamp.
-     * Return the same structure with source port and/or destination neuron port filled in or null if not found.
-     *
-     * @param portsQuery
-     *            Array of flow query info
-     * @return Original input array with source and/or destination ports filled if found. Null if not found.
-     * @throws Exception
-     *             if case of invalid input or service issues (connectivity, etc)
+     * @param vc  provides context information of the virtualization connector
+     * @param region  provides region info to operate on
+     * @param portsQuery  provides the context information of the flowInfo mapped by the identifier
+     * @return an object of FlowPortInfo mapped by the same identifiers provided in the input query
+     * @throws Exception upon failure
      */
     HashMap<String, FlowPortInfo> queryPortInfo(VirtualizationConnectorElement vc, String region,
             HashMap<String, FlowInfo> portsQuery) throws Exception;

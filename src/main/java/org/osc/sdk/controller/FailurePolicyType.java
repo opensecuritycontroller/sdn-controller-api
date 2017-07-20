@@ -16,8 +16,24 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+/**
+ * This enum represents the traffic flow action in case of device failure.
+ */
 public enum FailurePolicyType {
-    FAIL_OPEN("FAIL_OPEN"), FAIL_CLOSE("FAIL_CLOSE"), NA("N/A");
+	/**
+	 * Traffic is allowed to pass without inspection in case of device failure.
+	 */
+	FAIL_OPEN("FAIL_OPEN"),
+
+	/**
+	 * Traffic is not allowed to pass in case of device failure.
+	 */
+    FAIL_CLOSE("FAIL_CLOSE"),
+
+    /**
+     * N/A in case SDN controller does not support failure policy.
+     */
+    NA("N/A");
 
     private final String text;
 

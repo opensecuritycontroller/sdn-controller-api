@@ -19,6 +19,9 @@ package org.osc.sdk.controller;
 import org.osc.sdk.controller.element.InspectionPortElement;
 import org.osc.sdk.controller.element.NetworkElement;
 
+/**
+ * This class represents a default inspection port with inspection port element implementation
+ */
 public class DefaultInspectionPort implements InspectionPortElement {
 
     private NetworkElement ingressPort;

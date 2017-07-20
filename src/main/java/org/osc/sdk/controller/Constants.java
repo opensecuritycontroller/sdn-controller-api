@@ -16,39 +16,44 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+/**
+ * This class lists the constants referenced in the APIs and configurations defined in this SDK.
+ */
 public class Constants {
     /**
-     * Indicates whether the SDN Controller supports traffic redirection to a VNF running on a remote hypervisor.
+     * The name of the OSGi property containing the name of the plugin.
+     * <p>
+     * The value for this property must match the value in the Deployment-Name attribute of the plugin .bar file.
+     */
+    public static final String PLUGIN_NAME = "osc.plugin.name";
+
+    /**
+     * The name of the OSGi property that indicates whether the SDN Controller supports traffic redirection to a VNF running on a remote hypervisor.
      */
     public static final String SUPPORT_OFFBOX_REDIRECTION = "osc.plugin.sdn.support_offbox_redirection";
 
     /**
-     * Indicates whether the SDN Controller supports traffic redirection to multiple VNFs (service function chaining).
+     * The name of the OSGi property that indicates whether the SDN Controller supports traffic redirection to multiple VNFs (service function chaining).
      */
     public static final String SUPPORT_SFC = "osc.plugin.sdn.support_service_function_chaining";
 
     /**
-     * Indicates whether the SDN Controller supports inspection port failure detection and can bypass traffic inspection.
+     * The name of the OSGi property that indicates whether the SDN Controller supports inspection port failure detection and can bypass traffic inspection.
      */
     public static final String SUPPORT_FAILURE_POLICY = "osc.plugin.sdn.support_failure_policy";
 
     /**
-     * Indicates whether the SDN Controller uses the virtualization provider credentials.
+     * The name of the OSGi property that indicates whether the SDN Controller uses the virtualization provider credentials.
      */
     public static final String USE_PROVIDER_CREDS = "osc.plugin.sdn.use_provider_creds";
 
     /**
-     * Indicates whether the SDN Controller supports providing port information given the traffic information.
+     * The name of the OSGi property that indicates whether the SDN Controller supports providing port information given the traffic information.
      */
     public static final String QUERY_PORT_INFO = "osc.plugin.sdn.query_port_info";
 
     /**
-     * Indicates whether the SDN Controller supports grouping of virtual ports for traffic redirection.
+     * The name of the OSGi property that indicates whether the SDN Controller supports grouping of virtual ports for traffic redirection.
      */
     public static final String SUPPORT_PORT_GROUP = "osc.plugin.sdn.support_port_group";
-
-    /**
-     * The name of the plugin.
-     */
-    public static final String PLUGIN_NAME = "osc.plugin.name";
 }

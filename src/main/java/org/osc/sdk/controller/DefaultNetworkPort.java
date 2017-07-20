@@ -22,12 +22,14 @@ import java.util.List;
 import org.osc.sdk.controller.element.NetworkElement;
 
 
-
+/**
+ * This class represents a default network port with network element implementation
+ */
 public class DefaultNetworkPort implements NetworkElement {
 
     private String portId;
-    private List<String> macAddresses = new ArrayList<String>();
-    private List<String> portIPs = new ArrayList<String>();
+    private List<String> macAddresses = new ArrayList<>();
+    private List<String> portIPs = new ArrayList<>();
     private String parentId;
 
     public DefaultNetworkPort() {

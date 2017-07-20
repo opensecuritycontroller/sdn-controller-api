@@ -27,217 +27,254 @@ import org.osc.sdk.controller.exception.NetworkPortNotFoundException;
 import org.osgi.annotation.versioning.ConsumerType;
 
 /**
- * API's required to implement redirection
+ * This interface represents API's required to implement traffic redirection
  */
 @ConsumerType
 public interface SdnRedirectionApi extends AutoCloseable {
 
     /**
-     * Create NetworkElement with a list of child elements
-     * For example, create NetworkElement with ports of protected workloads
-     * @param elements
-     *          ports of protected workloads or any network element
-     * @return the created NetworkElement
-     * @throws Exception
+     * Creates a network element with a list of child elements on SDN controller
+     *
+     * @param elements  provides the list of network element
+     * @return the NetworkElement
+     * @throws Exception upon failure
      */
     NetworkElement registerNetworkElement(List<NetworkElement> elements) throws Exception;
 
     /**
-     * Update parent element with child_elements.
-     * For example update NetworkElement's protected workloads ports. Send the entire child_elements for update
-     * @param element
-     *          update this networkElement
-     * @param child_elements
-     *          list of child elements
-     * @return the updated or recreated NetworkElement
-     * @throws Exception
+     * Updates parent element with a list of child elements on SDN controller
+     *
+     * @param element  provides the network element to be updated
+     * @param childElements provides list of childElements
+     * @return the NetworkElement
+     * @throws Exception upon failure
      */
     NetworkElement updateNetworkElement(NetworkElement element, List<NetworkElement> childElements) throws Exception;
 
     /**
-     * Delete NetworkElement created with registerNetworkElement
-     * @param element
-     *          Element to be deleted
-     * @throws Exception
+     * <p>
+     * Deletes a network element previously created on SDN controller.
+     * No-op if no network element is found on SDN controller to be deleted.
+     * </p>
+     *
+     * @param element  provides the network element to be deleted
+     * @throws Exception upon failure
      */
     void deleteNetworkElement(NetworkElement element) throws Exception;
 
     /**
-     * Get the children elements of the network element
-     * For example get the protected workload ports of the Port Group
-     * @param element
-     * @return
-     * @throws Exception
+     * Retrieve the list of the child elements corresponding to the parent element from SDN controller
+     *
+     * @param element  provides the network element
+     * @return the list of NetworkElement, null if not found
+     * @throws Exception upon failure
      */
     List<NetworkElement> getNetworkElements(NetworkElement element) throws Exception;
 
     /**
-     * Install network hooks to inspect traffic of given network port by another network port
-     * which is part of an inspection network device.
+     * Creates an inspection hook on SDN controller, see {@link InspectionHookElement}
      *
-     * @param networkElem
-     *            The port on which behalf traffic is being inspected or a networkElement containing protected ports
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection devices.
-     * @param tag
-     *            A tag made available to inspection port data path. Usually represent the policy by
-     *            which traffic should be inspected.
-     * @param encType
-     *            Data path Encapsulation Method to use to extract tag and direction from packet
-     *
-     * @param order
-     *            The order in which to insert the inspection hook. If other inspection hooks are already in place, all
-     *            existing hooks will be push down from the point of insertion. The order range is zero based where -1
-     *            symbolizes to append as last
+     * @param networkElem  provides network element containing protected ports
+     * @param inspectionPort  provides inspection port belonging to network inspection devices
+     * @param tag  provides a tag made available to inspection port data path
+     * @param encType  provides the tag encapsulation type
+     * @param order  provides an order in which to insert the inspection hook
+     * @param failurePolicyType  provides the failure policy type
+     * @return the identifier of the inspection hook
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     String installInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Remove previously installed network hooks placed on behalf of network port.
+     * <p>
+     * Removes previously created inspection hook from SDN controller, see {@link InspectionHookElement}.
+     * No-op if no inspection hook is found on SDN controller to be deleted.
+     * </p>
      *
-     * @param networkElem
-     *            The port on which behalf traffic is being inspected or a networkElement containing protected ports
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
+     * @param networkElem  provides the network element containing protected ports
+     * @param inspectionPort  provides inspection port to be deleted
+     * @throws Exception upon failure
      */
     void removeInspectionHook(NetworkElement networkElem, InspectionPortElement inspectionPort) throws Exception;
 
     /**
-     * Remove the previously installed inspection hook given its identifier.
+     * <p>
+     * Removes previously created inspection hook specific to the inspection hook identifier from SDN controller, see {@link InspectionHookElement}.
+     * No-op if no inspection hook is found on SDN controller to be deleted.
+     * </p>
      *
-     * @param inspectionHookId
-     *            The identifier of the inspection hook to be removed.
+     * @param inspectionHookId  the identifier of the inspection hook to be deleted
+     * @throws Exception upon failure
      */
     void removeInspectionHook(String inspectionHookId) throws Exception;
 
     /**
-     * Retrieves a previously installed inspection hook given its identifier.
+     * Retrieves an inspection hook element from SDN controller, see {@link InspectionHookElement}
      *
-     * @param inspectionHookId
-     *            The identifier of the inspection hook to be retrieved.
+     * @param inspectionHookId  the identifier of the inspection hook
+     * @return the inspection hook element, null if not found
+     * @throws Exception upon failure
      */
     InspectionHookElement getInspectionHook(String inspectionHookId) throws Exception;
 
     /**
-     * Remove previously installed network hooks placed on behalf of network port.
+     * <p>
+     * Removes all previously created inspection hooks related to the provided network element from SDN controller, see {@link InspectionHookElement}.
+     * No-op if no inspection hooks are found on SDN controller to be deleted.
+     * </p>
      *
-     * @param networkElem
-     *            The port on which behalf traffic is being inspected or a networkElement containing protected ports
+     * @param networkElem  provides network element containing protected ports
+     * @throws Exception upon failure
      */
     void removeAllInspectionHooks(NetworkElement networkElem) throws Exception;
 
     /**
-     * Set data path policy tag of a specific inspection hook.
+     * Sets policy tag for a specific inspection hook on SDN controller
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
-     * @param tag
-     *            The tag value to set
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @param tag  provides a tag
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     void setInspectionHookTag(NetworkElement inspectedPort, InspectionPortElement inspectionPort, Long tag)
             throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Return the current tag used for an installed inspection hook.
+     * Retrieves the policy tag of an installed inspection hook from SDN controller
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
-     * @return The current inspection tag
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @return the inspection hook tag, null if not found
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     Long getInspectionHookTag(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Set the failure policy of an inspection hook.
+     * Sets the failure policy of an inspection hook on SDN controller
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
-     * @param failurePolicyType
-     *            The failure policy type
-     *
-     * @throws Exception
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @param failurePolicyType provides the failure policy type
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     void setInspectionHookFailurePolicy(NetworkElement inspectedPort, InspectionPortElement inspectionPort,
             FailurePolicyType failurePolicyType) throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Return the current failure policy used for an installed inspection hook.
+     * Retrieves the failure policy type of an installed inspection hook from SDN controller
      *
-     * @param inspectedPort
-     *            The port on which behalf traffic is being inspected.
-     * @param inspectionPort
-     *            The inspection port belonging to network inspection device.
-     * @return The current failure policy
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @return the failure policy type, null if not found
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     FailurePolicyType getInspectionHookFailurePolicy(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Return the inspection ports providing inspection for a given port
+     * Retrieves the list of inspection ports previously created from SDN controller
      *
-     * @param inspectedPort
-     *            The inspected port for which the inspection port is queried
-     * @return List of inspection ports providing inspection service.
-     * @throws Exception
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @return the list of network port element, null if not found
+     * @throws Exception upon failure
      */
     //    public abstract List<NetworkPortElement> getInspectionPorts(NetworkPortElement inspectedPort) throws Exception;
 
     /**
-     * Return list of inspected port on which behalf inspection hooks are installed.
+     * Retrieves the list of inspected ports previously protected from SDN controller
      *
-     * @param inspectionPort
-     *            The inspection network device port
-     * @return List of ports being inspected by the provided inspection port.
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @return the list of network port element, null if not found
+     * @throws Exception upon failure
      */
     //    public abstract List<NetworkPortElement> getInspectedPorts(NetworkPortElement inspectionPort) throws Exception;
 
+    /**
+     * Retrieves an inspection hook element previously created from SDN controller
+     *
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @return the inspection hook element, null if not found
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
+     */
     InspectionHookElement getInspectionHook(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
+    /**
+     * Updates an inspection hook on SDN controller
+     *
+     * @param existingInspectionHook  provides inspection hook to be updated
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
+     */
     void updateInspectionHook(InspectionHookElement existingInspectionHook)
             throws NetworkPortNotFoundException, Exception;
 
     /**
-     * On board a port as inspection interface. This call is assumed to be idempotent. i.e calls to register the same
-     * port multiple times will result in no-op.
+     * <p>
+     * Creates an inspection port on SDN controller.
+     * The call to register the same port multiple times will result in no-op.
+     * </p>
      *
-     * @param inspectionPort
-     *            Inspection port to on board
-     * @return return the target element's id of which the inspectionPort is part of. Else if not part of any
-     *              target element, returns an empty string
-     * @throws NetworkPortNotFoundException
-     * @throws Exception
+     * @param inspectionPort  provides the inspection port to be created
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     void registerInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Remove previously on boarded network ports as inspection interfaces.
+     * <p>
+     * Deletes an inspection port previously created on SDN controller.
+     * No-op if no inspection port is found on SDN controller to be deleted.
+     * </p>
      *
-     * @param inspectionPort
-     *            Inspection port which was on boarded
+     * @param inspectionPort  provides the inspection port to be deleted
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     void removeInspectionPort(InspectionPortElement inspectionPort) throws NetworkPortNotFoundException, Exception;
 
     /**
-     * Get inspection port information
+     * Retrieves an inspection port element previously created from SDN controller
      *
-     * @param inspectionPort
-     *            Inspection port
+     * @param inspectionPort  provides the inspection port element to be retrieved
+     * @return the inspection port element, null if not found
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
      */
     InspectionPortElement getInspectionPort(InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
+    /**
+     * Sets an inspection hook order on SDN controller
+     *
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @param order provides the order in which to insert the inspection hook
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
+     */
     void setInspectionHookOrder(NetworkElement inspectedPort, InspectionPortElement inspectionPort, Long order)
             throws NetworkPortNotFoundException, Exception;
 
+    /**
+     * Retrieves an inspection hook order from SDN controller
+     *
+     * @param inspectedPort  provides port on which behalf traffic is being inspected
+     * @param inspectionPort  provides inspection port belonging to network inspection device
+     * @return the inspection hook order in which to insert the inspection hook, null if not found
+     * @throws NetworkPortNotFoundException when port is not found
+     * @throws Exception upon failure
+     */
     Long getInspectionHookOrder(NetworkElement inspectedPort, InspectionPortElement inspectionPort)
             throws NetworkPortNotFoundException, Exception;
 
