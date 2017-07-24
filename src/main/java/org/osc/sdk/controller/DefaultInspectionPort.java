@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.osc.sdk.controller;
 
+import org.osc.sdk.controller.element.Element;
 import org.osc.sdk.controller.element.InspectionPortElement;
 import org.osc.sdk.controller.element.NetworkElement;
 
@@ -26,13 +27,15 @@ public class DefaultInspectionPort implements InspectionPortElement {
 
     private NetworkElement ingressPort;
     private NetworkElement egressPort;
+	private Element element;
 
     public DefaultInspectionPort() {
     }
 
-    public DefaultInspectionPort(NetworkElement ingressPort, NetworkElement egressPort) {
+    public DefaultInspectionPort(NetworkElement ingressPort, NetworkElement egressPort, Element element) {
         this.ingressPort = ingressPort;
         this.egressPort = egressPort;
+        this.element = element;
     }
 
     @Override
@@ -44,6 +47,16 @@ public class DefaultInspectionPort implements InspectionPortElement {
     public NetworkElement getEgressPort() {
         return this.egressPort;
     }
+
+	@Override
+	public String getElementId() {
+		return this.element.getElementId();
+	}
+
+	@Override
+	public String getParentId() {
+		return this.element.getParentId();
+	}
 
     @Override
     public String toString() {
