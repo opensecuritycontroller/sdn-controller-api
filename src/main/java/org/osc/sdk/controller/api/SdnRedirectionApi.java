@@ -71,7 +71,6 @@ public interface SdnRedirectionApi extends AutoCloseable {
      * <p>
      * No-op if no network element is found on SDN controller to be deleted.
      *
-     *
      * @param element  provides the network element to be deleted
      * @throws Exception upon failure
      */
