@@ -14,5 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-@org.osgi.annotation.versioning.Version("2.0.0")
-package org.osc.sdk.controller.api;
+package org.osc.sdk.controller.element;
+
+/**
+ * <p>
+ * This interface represents a generic usage for configuring set of elements in a group.
+ * <p>
+ * In SFC, used to configure grouping of port pairs of a service function and also chaining of service functions groups
+ */
+public interface Element {
+	/**
+	 * @return the identifier of network element
+	 */
+    String getElementId();
+
+	/**
+	 * @return the identifier of network element's parent
+	 */
+    String getParentId();
+
+}

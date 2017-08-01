@@ -20,10 +20,11 @@ import org.osgi.annotation.versioning.ConsumerType;
 
 /**
  * This interface represents a inspection port element.
- * If the ingress and egress ports are the same, then the same port will need to be returned for either of the methods.
+ * <p>
+ * If the ingress and egress ports are the same, the same port will be returned for either of the methods.
  */
 @ConsumerType
-public interface InspectionPortElement {
+public interface InspectionPortElement extends Element {
 
     /**
      * @return the network element
@@ -34,4 +35,5 @@ public interface InspectionPortElement {
      * @return the network element
      */
     NetworkElement getEgressPort();
+
 }

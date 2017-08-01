@@ -25,11 +25,7 @@ import org.osgi.annotation.versioning.ConsumerType;
  * Network Element is a port on which behalf traffic is being inspected or a element containing protected ports.
  */
 @ConsumerType
-public interface NetworkElement {
-	/**
-	 * @return the identifier of network element
-	 */
-    String getElementId();
+public interface NetworkElement extends Element {
 
 	/**
 	 * @return the list of MAC addresses
@@ -40,10 +36,5 @@ public interface NetworkElement {
 	 * @return the list of port IPs
 	 */
     List<String> getPortIPs();
-
-	/**
-	 * @return the identifier of network element's parent
-	 */
-    String getParentId();
 
 }
