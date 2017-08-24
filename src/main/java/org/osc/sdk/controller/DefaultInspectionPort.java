@@ -27,7 +27,7 @@ public class DefaultInspectionPort implements InspectionPortElement {
 
     private NetworkElement ingressPort;
     private NetworkElement egressPort;
-	private Element element;
+    private Element element;
 
     public DefaultInspectionPort() {
     }
@@ -48,15 +48,15 @@ public class DefaultInspectionPort implements InspectionPortElement {
         return this.egressPort;
     }
 
-	@Override
-	public String getElementId() {
-		return this.element.getElementId();
-	}
+    @Override
+    public String getElementId() {
+        return this.element != null ? this.element.getElementId() : null;
+    }
 
-	@Override
-	public String getParentId() {
-		return this.element.getParentId();
-	}
+    @Override
+    public String getParentId() {
+        return this.element != null ? this.element.getParentId() : null;
+    }
 
     @Override
     public String toString() {
