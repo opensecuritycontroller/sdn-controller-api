@@ -32,6 +32,13 @@ public class DefaultInspectionPort implements InspectionPortElement {
     public DefaultInspectionPort() {
     }
 
+    public DefaultInspectionPort(String elementId, String parentId, NetworkElement ingressPort,
+            NetworkElement egressPort) {
+        this.ingressPort = ingressPort;
+        this.egressPort = egressPort;
+        this.element = new ElementImpl(elementId, parentId);
+    }
+
     public DefaultInspectionPort(NetworkElement ingressPort, NetworkElement egressPort, Element element) {
         this.ingressPort = ingressPort;
         this.egressPort = egressPort;
@@ -60,7 +67,28 @@ public class DefaultInspectionPort implements InspectionPortElement {
 
     @Override
     public String toString() {
-        return "DefaultInspectionPort [ingressPort=" + this.ingressPort + ", egressPort=" + this.egressPort + "]";
+        return "DefaultInspectionPort [ingressPort=" + this.ingressPort + ", egressPort=" + this.egressPort + ", element="
+                + this.element + "]";
     }
 
+    private static class ElementImpl implements Element {
+        private String elementId;
+        private String parentId;
+
+        public ElementImpl(String elementId, String parentId) {
+            this.elementId = elementId;
+            this.parentId = parentId;
+        }
+
+        @Override
+        public String getElementId() {
+            return this.elementId;
+        }
+
+        @Override
+        public String getParentId() {
+            return this.parentId;
+        }
+
+    }
 }
