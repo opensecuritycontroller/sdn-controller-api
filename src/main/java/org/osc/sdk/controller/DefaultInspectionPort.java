@@ -25,24 +25,45 @@ import org.osc.sdk.controller.element.NetworkElement;
  */
 public class DefaultInspectionPort implements InspectionPortElement {
 
+    private String elementId;
+    private String parentId;
     private NetworkElement ingressPort;
     private NetworkElement egressPort;
-    private Element element;
 
     public DefaultInspectionPort() {
     }
 
-    public DefaultInspectionPort(String elementId, String parentId, NetworkElement ingressPort,
-            NetworkElement egressPort) {
+    public DefaultInspectionPort(NetworkElement ingressPort,
+            NetworkElement egressPort, String elementId, String parentId) {
         this.ingressPort = ingressPort;
         this.egressPort = egressPort;
-        this.element = new ElementImpl(elementId, parentId);
+        this.elementId = elementId;
+        this.parentId = parentId;
     }
 
     public DefaultInspectionPort(NetworkElement ingressPort, NetworkElement egressPort, Element element) {
         this.ingressPort = ingressPort;
         this.egressPort = egressPort;
-        this.element = element;
+        this.elementId = (element != null ? element.getElementId() : null);
+        this.parentId = (element != null ? element.getParentId() : null);
+    }
+
+    @Override
+    public String getElementId() {
+        return this.elementId;
+    }
+
+    public void setElementId(String elementId) {
+        this.elementId = elementId;
+    }
+
+    @Override
+    public String getParentId() {
+        return this.parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     @Override
@@ -56,39 +77,8 @@ public class DefaultInspectionPort implements InspectionPortElement {
     }
 
     @Override
-    public String getElementId() {
-        return this.element != null ? this.element.getElementId() : null;
-    }
-
-    @Override
-    public String getParentId() {
-        return this.element != null ? this.element.getParentId() : null;
-    }
-
-    @Override
     public String toString() {
-        return "DefaultInspectionPort [ingressPort=" + this.ingressPort + ", egressPort=" + this.egressPort + ", element="
-                + this.element + "]";
-    }
-
-    private static class ElementImpl implements Element {
-        private String elementId;
-        private String parentId;
-
-        public ElementImpl(String elementId, String parentId) {
-            this.elementId = elementId;
-            this.parentId = parentId;
-        }
-
-        @Override
-        public String getElementId() {
-            return this.elementId;
-        }
-
-        @Override
-        public String getParentId() {
-            return this.parentId;
-        }
-
+        return "DefaultInspectionPort [elementId=" + this.elementId + ", parentId=" + this.parentId + ", ingressPort="
+                + this.ingressPort + ", egressPort=" + this.egressPort + "]";
     }
 }
