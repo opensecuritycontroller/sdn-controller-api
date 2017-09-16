@@ -81,4 +81,7 @@ public class DefaultNetworkPort implements NetworkElement {
         this.parentId = parentId;
     }
 
+    public void setIpAddresses(List<String> ipAddresses){
+        this.portIPs = ipAddresses;
+    }
 }
