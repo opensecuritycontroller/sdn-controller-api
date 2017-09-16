@@ -38,6 +38,11 @@ public class Constants {
     public static final String SUPPORT_SFC = "osc.plugin.sdn.support_service_function_chaining";
 
     /**
+     * The name of the OSGi property that indicates whether the SDN Controller supports Openstack Neutron service function chaining.
+     */
+    public static final String SUPPORT_NEUTRON_SFC = "osc.plugin.sdn.support_neutron_sfc";
+
+    /**
      * The name of the OSGi property that indicates whether the SDN Controller supports inspection port failure detection and can bypass traffic inspection.
      */
     public static final String SUPPORT_FAILURE_POLICY = "osc.plugin.sdn.support_failure_policy";
