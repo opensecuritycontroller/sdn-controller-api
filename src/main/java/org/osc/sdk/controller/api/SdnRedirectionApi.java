@@ -77,6 +77,17 @@ public interface SdnRedirectionApi extends AutoCloseable {
     void deleteNetworkElement(NetworkElement element) throws Exception;
 
     /**
+     *
+     * Retrieves a network element given a device owner identifier defined by the SDN controller associated with the element.
+     * <p>
+     * Returns null if a network element is not found.
+     *
+     * @param deviceOwnerId  the identifier of the device associated with the network element
+     * @throws Exception upon failure
+     */
+    NetworkElement getNetworkElementByDeviceOwnerId(String deviceOwnerId) throws Exception;
+
+    /**
      * Retrieve the list of the child elements corresponding to the parent element from SDN controller.
      *
      * @param element  provides the network element
