@@ -35,8 +35,8 @@ import org.osgi.annotation.versioning.ConsumerType;
  * <li>{@link SdnRedirectionApi#registerNetworkElement(List)} is used to register a port chain
  * <li>{@link SdnRedirectionApi#updateNetworkElement(NetworkElement, List)} is used to update a port chain
  * <li>{@link SdnRedirectionApi#deleteNetworkElement(NetworkElement)} is used to delete a port chain
- * <li>{@link SdnRedirectionApi#installInspectionHook(List, InspectionPortElement, Long, TagEncapsulationType, Long, FailurePolicyType)} is used to create a flow classifier
- * <li>{@link SdnRedirectionApi#removeInspectionHook(List, InspectionPortElement)} is used to remove the list of flow classifier attached to a port chain
+ * <li>{@link SdnRedirectionApi#installInspectionHook(NetworkElement, InspectionPortElement, Long, TagEncapsulationType, Long, FailurePolicyType)} is used to create a flow classifier
+ * <li>{@link SdnRedirectionApi#removeInspectionHook(NetworkElement, InspectionPortElement)} is used to remove the list of flow classifier attached to a port chain
  * <li>{@link SdnRedirectionApi#registerInspectionPort(InspectionPortElement)} is used to register the port pair
  * <li>{@link SdnRedirectionApi#removeInspectionPort(InspectionPortElement)} is used to remove the port pair
  * </ul>
@@ -83,6 +83,7 @@ public interface SdnRedirectionApi extends AutoCloseable {
      * Returns null if a network element is not found.
      *
      * @param deviceOwnerId  the identifier of the device associated with the network element
+     * @return Network element corresponding to the device provided
      * @throws Exception upon failure
      */
     NetworkElement getNetworkElementByDeviceOwnerId(String deviceOwnerId) throws Exception;
@@ -99,8 +100,9 @@ public interface SdnRedirectionApi extends AutoCloseable {
     /**
      * Creates an inspection hook on SDN controller, see {@link InspectionHookElement}
      *
-     * @param networkElements  provides a list of network elements containing protected ports
-     * @param inspectionPort  provides inspection port belonging to network inspection devices
+     * @param networkElement  provides a network element containing the port to be protected
+     * @param inspectionPort  provides inspection port belonging to network inspection devices(In case of SFC, this is the
+     * port chain id.
      * @param tag  provides a tag made available to inspection port data path
      * @param encType  provides the tag encapsulation type
      * @param order  provides an order in which to insert the inspection hook
@@ -109,7 +111,7 @@ public interface SdnRedirectionApi extends AutoCloseable {
      * @throws NetworkPortNotFoundException when port is not found
      * @throws Exception upon failure
      */
-    String installInspectionHook(List<NetworkElement> networkElements, InspectionPortElement inspectionPort, Long tag,
+    String installInspectionHook(NetworkElement networkElement, InspectionPortElement inspectionPort, Long tag,
             TagEncapsulationType encType, Long order, FailurePolicyType failurePolicyType)
                     throws NetworkPortNotFoundException, Exception;
 
@@ -120,11 +122,11 @@ public interface SdnRedirectionApi extends AutoCloseable {
      * <p>
      * In case of SFC, inspectionPort represents port chain id.
      *
-     * @param networkElements  provides a list of network elements containing protected ports
-     * @param inspectionPort  provides inspection port to be deleted
+     * @param networkElement  provides a network element containing the port for which the hook needs to be removed
+     * @param inspectionPort  provides the inspection port for which the hook needs to be removed
      * @throws Exception upon failure
      */
-    void removeInspectionHook(List<NetworkElement> networkElements, InspectionPortElement inspectionPort) throws Exception;
+    void removeInspectionHook(NetworkElement networkElement, InspectionPortElement inspectionPort) throws Exception;
 
     /**
 
