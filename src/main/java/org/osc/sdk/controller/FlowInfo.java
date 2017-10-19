@@ -21,45 +21,93 @@ package org.osc.sdk.controller;
  */
 public class FlowInfo {
 
-	/**
-	 * IP address of the source
-	 */
-    public String sourceIpAddress;
+    /**
+     * IP address of the source
+     */
+    private String sourceIpAddress;
 
-	/**
-	 * MAC address of the source
-	 */
-    public String sourceMacAddress;
+    /**
+     * MAC address of the source
+     */
+    private String sourceMacAddress;
 
-	/**
-	 * Port information of the source
-	 */
-    public int sourcePort;
+    /**
+     * Port information of the source
+     */
+    private int sourcePort;
 
-	/**
-	 * IP address of the destination
-	 */
-    public String destinationIpAddress;
+    /**
+     * IP address of the destination
+     */
+    private String destinationIpAddress;
 
-	/**
-	 * MAC address of the source
-	 */
-    public String destinationMacAddress;
+    /**
+     * MAC address of the source
+     */
+    private String destinationMacAddress;
 
-	/**
-	 * Port information of the source
-	 */
-    public int destinationPort;
+    /**
+     * Port information of the source
+     */
+    private int destinationPort;
 
-	/**
-	 * Protocol identifier
-	 */
-    public int protocolId;
+    /**
+     * Protocol identifier
+     */
+    private int protocolId;
 
-	/**
-	 * Timestamp of a flow
-	 */
-    public long flowTimestamp;
+    /**
+     * Timestamp of a flow
+     */
+    private long flowTimestamp;
+
+    FlowInfo() {
+
+    }
+
+    public FlowInfo(String sourceIpAddress, String sourceMacAddress, int sourcePort, String destinationIpAddress,
+            String destinationMacAddress, int destinationPort, int protocolId, long flowTimestamp) {
+        this.sourceIpAddress = sourceIpAddress;
+        this.sourceMacAddress = sourceMacAddress;
+        this.sourcePort = sourcePort;
+        this.destinationIpAddress = destinationIpAddress;
+        this.destinationMacAddress = destinationMacAddress;
+        this.destinationPort = destinationPort;
+        this.protocolId = protocolId;
+        this.flowTimestamp = flowTimestamp;
+    }
+
+    public String getSourceIpAddress() {
+        return this.sourceIpAddress;
+    }
+
+    public String getSourceMacAddress() {
+        return this.sourceMacAddress;
+    }
+
+    public int getSourcePort() {
+        return this.sourcePort;
+    }
+
+    public String getDestinationIpAddress() {
+        return this.destinationIpAddress;
+    }
+
+    public String getDestinationMacAddress() {
+        return this.destinationMacAddress;
+    }
+
+    public int getDestinationPort() {
+        return this.destinationPort;
+    }
+
+    public int getProtocolId() {
+        return this.protocolId;
+    }
+
+    public long getFlowTimestamp() {
+        return this.flowTimestamp;
+    }
 
     @Override
     public String toString() {

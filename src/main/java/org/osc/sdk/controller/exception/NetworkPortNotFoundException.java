@@ -25,7 +25,7 @@ public class NetworkPortNotFoundException extends Exception {
 	/**
 	 * Port identifier
 	 */
-    private String portId;
+    private final String portId;
 
     public NetworkPortNotFoundException(String portId, String message) {
         super(message);

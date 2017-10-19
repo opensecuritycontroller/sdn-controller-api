@@ -61,4 +61,8 @@ public class Constants {
      * The name of the OSGi property that indicates whether the SDN Controller supports grouping of virtual ports for traffic redirection.
      */
     public static final String SUPPORT_PORT_GROUP = "osc.plugin.sdn.support_port_group";
+
+    private Constants() {
+
+    }
 }
