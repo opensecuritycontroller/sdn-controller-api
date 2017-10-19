@@ -21,20 +21,43 @@ package org.osc.sdk.controller;
  */
 public class FlowPortInfo {
 
-	/**
-	 * Flow info to be used to query six tuple information
-	 */
-    public FlowInfo flow;
+    /**
+     * Flow info to be used to query six tuple information
+     */
+    private FlowInfo flow;
 
-	/**
-	 * Port identifier of the source
-	 */
-    public String sourcePortId;
+    /**
+     * Port identifier of the source
+     */
+    private String sourcePortId;
 
-	/**
-	 * Port identifier of the destination
-	 */
-    public String destinationPortId;
+    /**
+     * Port identifier of the destination
+     */
+    private String destinationPortId;
+
+    FlowPortInfo() {
+
+    }
+
+    public FlowPortInfo(FlowInfo flow, String sourcePortId, String destinationPortId) {
+        super();
+        this.flow = flow;
+        this.sourcePortId = sourcePortId;
+        this.destinationPortId = destinationPortId;
+    }
+
+    public FlowInfo getFlow() {
+        return this.flow;
+    }
+
+    public String getSourcePortId() {
+        return this.sourcePortId;
+    }
+
+    public String getDestinationPortId() {
+        return this.destinationPortId;
+    }
 
     @Override
     public String toString() {
