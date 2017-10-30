@@ -127,7 +127,7 @@
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                            <!-- Turning the fail-on-violation flag on -->
+                            <!-- Turning the fail-on-violation flag on. -->
                             <failOnViolation>true</failOnViolation>
                         </configuration>
                     </execution>
